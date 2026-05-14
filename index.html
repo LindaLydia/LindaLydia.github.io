@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tianyuan Zou</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: white;
+      padding: 50px 40px;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 0 auto 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      font-weight: 600;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .header .en-name {
+      font-size: 18px;
+      opacity: 0.9;
+      margin-bottom: 15px;
+    }
+
+    .header .affiliation {
+      font-size: 15px;
+      opacity: 0.8;
+      margin-bottom: 8px;
+    }
+
+    .header .education {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-bottom: 20px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 25px;
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .github-stats {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .github-stats span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .content {
+      padding: 40px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #667eea;
+      display: inline-block;
+    }
+
+    .research-interest {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .paper-list {
+      list-style: none;
+    }
+
+    .paper-item {
+      padding: 18px;
+      background: #f8f9fc;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      border-left: 4px solid #667eea;
+      transition: all 0.3s ease;
+    }
+
+    .paper-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+    }
+
+    .paper-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+    }
+
+    .paper-authors {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 6px;
+    }
+
+    .paper-authors .me {
+      color: #667eea;
+      font-weight: 600;
+    }
+
+    .paper-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .venue {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #e8eaff;
+      color: #667eea;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #d4edda;
+      color: #155724;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .paper-link {
+      color: #667eea;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .paper-link:hover {
+      text-decoration: underline;
+    }
+
+    .repo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px;
+    }
+
+    .repo-card {
+      padding: 18px;
+      background: #f8f9fc;
+      border-radius: 12px;
+      border: 1px solid #e8eaff;
+      transition: all 0.3s ease;
+    }
+
+    .repo-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+      border-color: #667eea;
+    }
+
+    .repo-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #667eea;
+      margin-bottom: 8px;
+      text-decoration: none;
+    }
+
+    .repo-name:hover {
+      text-decoration: underline;
+    }
+
+    .repo-desc {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .repo-stats {
+      display: flex;
+      gap: 15px;
+      font-size: 12px;
+      color: #888;
+    }
+
+    .repo-stats span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .repo-lang {
+      padding: 2px 8px;
+      background: #f0f0f0;
+      border-radius: 10px;
+      font-size: 11px;
+    }
+
+    .experience-item {
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+      background: #f8f9fc;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      align-items: flex-start;
+    }
+
+    .exp-logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .exp-content {
+      flex: 1;
+    }
+
+    .exp-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 4px;
+    }
+
+    .exp-company {
+      font-size: 14px;
+      color: #667eea;
+      margin-bottom: 4px;
+    }
+
+    .exp-period {
+      font-size: 13px;
+      color: #888;
+    }
+
+    .hobbies-section {
+      padding: 30px;
+      background: linear-gradient(135deg, #f8f9fc 0%, #e8eaff 100%);
+      border-radius: 12px;
+      text-align: center;
+      border: 2px dashed #667eea;
+    }
+
+    .hobbies-section p {
+      color: #888;
+      font-size: 14px;
+    }
+
+    .footer {
+      background: #1a1a2e;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 25px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        padding: 35px 25px;
+      }
+      .content {
+        padding: 25px;
+      }
+      .experience-item {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .github-stats {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="avatar">
+        <img src="https://avatars.githubusercontent.com/u/85967239?v=4" alt="Tianyuan Zou">
+      </div>
+      <h1>邹恬圆</h1>
+      <p class="en-name">Tianyuan Zou</p>
+      <p class="affiliation">PhD Candidate @ Tsinghua University</p>
+      <p class="education">Institute for AI Industry Research (AIR)</p>
+      <div class="social-links">
+        <a href="https://github.com/LindaLydia">📂 GitHub</a>
+        <a href="https://scholar.google.com/citations?user=vlV8sCQAAAAJ&hl=en">📄 Google Scholar</a>
+        <a href="mailto:tianyuanzou.work@gmail.com">✉️ Email</a>
+      </div>
+      <div class="github-stats">
+        <span>📊 10 repositories</span>
+        <span>⭐ 31 stars</span>
+        <span>👥 16 followers</span>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- Research Interests -->
+      <div class="section">
+        <h2 class="section-title">📖 Research Interests</h2>
+        <div class="research-interest">
+          <span class="tag">Synthetic Data Generation</span>
+          <span class="tag">Privacy-Preserving Machine Learning</span>
+          <span class="tag">Federated Learning</span>
+          <span class="tag">Large Language Models</span>
+          <span class="tag">Multi-Model Fusion</span>
+        </div>
+      </div>
+
+      <!-- Publications -->
+      <div class="section">
+        <h2 class="section-title">📚 Publications</h2>
+        <ul class="paper-list">
+          <li class="paper-item">
+            <div class="paper-title">PE-SGD: Differentially Private Deep Learning via Evolution of Gradient Subspace for Text</div>
+            <div class="paper-authors">
+              <span class="me">Tianyuan Zou</span>, Zinan Lin, Sivakanth Gopi, Yang Liu, Ya-Qin Zhang, Robert Sim, Xin Deng, Sergey Yekhanin
+            </div>
+            <div class="paper-meta">
+              <span class="venue">ICLR 2026 Poster</span>
+              <a class="paper-link" href="https://github.com/LindaLydia/PE-SGD">GitHub</a>
+            </div>
+          </li>
+
+          <li class="paper-item">
+            <div class="paper-title">PCEvolve: Private Contrastive Evolution for Synthetic Dataset Generation via Few-Shot Private Data and Generative APIs</div>
+            <div class="paper-authors">
+              Jianqing Zhang, Yang Liu, Jie Fu, Yang Hua, <span class="me">Tianyuan Zou</span>, Jian Cao, Qiang Yang
+            </div>
+            <div class="paper-meta">
+              <span class="venue">ICML 2025 Spotlight</span>
+              <span class="badge">⭐ Spotlight</span>
+            </div>
+          </li>
+
+          <li class="paper-item">
+            <div class="paper-title">Contrastive Private Data Synthesis via Weighted Multi-PLM Fusion</div>
+            <div class="paper-authors">
+              <span class="me">Tianyuan Zou</span>, Yang Liu, Peng Li, Yufei Xiong, Jianqing Zhang, Jingjing Liu, Ye Ouyang, Xiaozhou Ye, Ya-Qin Zhang
+            </div>
+            <div class="paper-meta">
+              <span class="venue">ICML 2025</span>
+              <a class="paper-link" href="https://github.com/LindaLydia/WASP">GitHub</a>
+            </div>
+          </li>
+
+          <li class="paper-item">
+            <div class="paper-title">Towards Harnessing the Collaborative Power of Large and Small Models for Domain Tasks</div>
+            <div class="paper-authors">
+              Yang Liu, Bingjie Yan, <span class="me">Tianyuan Zou</span>, Jianqing Zhang, Zixuan Gu, Jianbing Ding, Xidong Wang, Jingyi Li, Xiaozhou Ye, Ye Ouyang
+            </div>
+            <div class="paper-meta">
+              <span class="venue">AlphaXiv 2025</span>
+            </div>
+          </li>
+
+          <li class="paper-item">
+            <div class="paper-title">FuseGen: PLM Fusion for Data-generation based Zero-shot Learning</div>
+            <div class="paper-authors">
+              <span class="me">Tianyuan Zou</span>, Yang Liu, Peng Li, Jianqing Zhang, Jingjing Liu, Ya-Qin Zhang
+            </div>
+            <div class="paper-meta">
+              <span class="venue">EMNLP 2024</span>
+              <a class="paper-link" href="https://github.com/LindaLydia/FuseGen">GitHub ⭐ 6</a>
+            </div>
+          </li>
+
+          <li class="paper-item">
+            <div class="paper-title">VFLAIR: A Research Library and Benchmark for Vertical Federated Learning</div>
+            <div class="paper-authors">
+              <span class="me">Tianyuan Zou</span>, Zixuan Gu, Yu He, Hideaki Takahashi, Yang Liu, Ya-Qin Zhang
+            </div>
+            <div class="paper-meta">
+              <span class="venue">ICLR 2024</span>
+            </div>
+          </li>
+
+          <li class="paper-item">
+            <div class="paper-title">Defending Batch-Level Label Inference and Replacement Attacks in Vertical Federated Learning</div>
+            <div class="paper-authors">
+              <span class="me">Tianyuan Zou</span>, Yang Liu, Yan Kang, Wenhan Liu, Yuanqin He, Zhihao Yi, Qiang Yang, Ya-Qin Zhang
+            </div>
+            <div class="paper-meta">
+              <span class="venue">IEEE TBD 2024</span>
+            </div>
+          </li>
+
+          <li class="paper-item">
+            <div class="paper-title">Defending Against Inference and Backdoor Attacks in Vertical Federated Learning Via Mutual Information Regularization</div>
+            <div class="paper-authors">
+              <span class="me">Tianyuan Zou</span>, Yang Liu, Xiaozhou Ye, Ye Ouyang, Ya-Qin Zhang
+            </div>
+            <div class="paper-meta">
+              <span class="venue">IEEE Big Data 2024</span>
+              <a class="paper-link" href="https://github.com/LindaLydia/RobustVFLbyMI">GitHub ⭐ 8</a>
+            </div>
+          </li>
+
+          <li class="paper-item">
+            <div class="paper-title">Vertical Federated Learning: Concepts, Advances and Challenges</div>
+            <div class="paper-authors">
+              Yang Liu, Yan Kang, <span class="me">Tianyuan Zou</span>, Yanhong Pu, Yuanqin He, Xiaozhou Ye, Ye Ouyang, Ya-Qin Zhang, Qiang Yang
+            </div>
+            <div class="paper-meta">
+              <span class="venue">IEEE TKDE 2024</span>
+            </div>
+          </li>
+
+          <li class="paper-item">
+            <div class="paper-title">Mutual Information Regularization for Vertical Federated Learning</div>
+            <div class="paper-authors">
+              <span class="me">Tianyuan Zou</span>, Yang Liu, Ya-Qin Zhang
+            </div>
+            <div class="paper-meta">
+              <span class="venue">CoRR 2023</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Projects -->
+      <div class="section">
+        <h2 class="section-title">🚀 Featured Projects</h2>
+        <div class="repo-grid">
+          <div class="repo-card">
+            <a class="repo-name" href="https://github.com/LindaLydia/RobustVFLbyMI">RobustVFLbyMI</a>
+            <p class="repo-desc">Robust Vertical Federated Learning via Mutual Information Regularization</p>
+            <div class="repo-stats">
+              <span>⭐ 8</span>
+              <span class="repo-lang">Python</span>
+            </div>
+          </div>
+
+          <div class="repo-card">
+            <a class="repo-name" href="https://github.com/LindaLydia/FuseGen">FuseGen</a>
+            <p class="repo-desc">PLM Fusion for Data-generation based Zero-shot Learning (EMNLP 2024)</p>
+            <div class="repo-stats">
+              <span>⭐ 6</span>
+              <span class="repo-lang">Python</span>
+            </div>
+          </div>
+
+          <div class="repo-card">
+            <a class="repo-name" href="https://github.com/LindaLydia/WASP">WASP</a>
+            <p class="repo-desc">Contrastive Private Data Synthesis via Weighted Multi-PLM Fusion</p>
+            <div class="repo-stats">
+              <span>⭐ 5</span>
+              <span class="repo-lang">Python</span>
+            </div>
+          </div>
+
+          <div class="repo-card">
+            <a class="repo-name" href="https://github.com/LindaLydia/PE-SGD">PE-SGD</a>
+            <p class="repo-desc">Differentially Private Deep Learning via Evolution of Gradient Subspace</p>
+            <div class="repo-stats">
+              <span>⭐ 1</span>
+              <span class="repo-lang">Python</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div class="section">
+        <h2 class="section-title">💼 Experience</h2>
+        
+        <div class="experience-item">
+          <div class="exp-logo">字节</div>
+          <div class="exp-content">
+            <div class="exp-title">Research Intern - Search Agent</div>
+            <div class="exp-company">ByteDance Inc.</div>
+            <div class="exp-period">2025 - 2026</div>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="exp-logo">微软</div>
+          <div class="exp-content">
+            <div class="exp-title">Research Intern - Algorithm Group</div>
+            <div class="exp-company">Microsoft Research</div>
+            <div class="exp-period">2025</div>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="exp-logo">清华</div>
+          <div class="exp-content">
+            <div class="exp-title">PhD Candidate</div>
+            <div class="exp-company">Tsinghua University, Institute for AI Industry Research</div>
+            <div class="exp-period">2022 - Present | Advisor: Ya-Qin Zhang & Yang Liu</div>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="exp-logo">清华</div>
+          <div class="exp-content">
+            <div class="exp-title">Undergraduate</div>
+            <div class="exp-company">Tsinghua University, Department of Computer Science</div>
+            <div class="exp-period">2018 - 2022</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hobbies (To be filled by user) -->
+      <div class="section">
+        <h2 class="section-title">🎯 Hobbies</h2>
+        <div class="hobbies-section">
+          <p>Coming soon...</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Last updated: May 2026 | Made with ❤️
+    </div>
+  </div>
+</body>
+</html>
